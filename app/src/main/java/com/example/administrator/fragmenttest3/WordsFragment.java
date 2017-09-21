@@ -15,6 +15,7 @@ import android.widget.ListView;
 public class WordsFragment extends ListFragment {
     OnWordSelectedListener mCallback;
 
+    DefinitionFragment fr = new DefinitionFragment();
     /**
      * 액티비티와 프래그먼트가 데이터를 주고 받는 인터페이스
      */
@@ -35,7 +36,9 @@ public class WordsFragment extends ListFragment {
     @Override
     public void onStart() {
         super.onStart();
-        if (getFragmentManager().findFragmentById(R.id.definition_fragment) != null) {
+        fr = new DefinitionFragment();
+
+        if (getFragmentManager().findFragmentById(R.id.fragment_container) != null) {
             getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         }
     }
