@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import com.example.administrator.*;
 
 
 /**
@@ -27,6 +28,30 @@ public class DefinitionFragment extends Fragment {
         return fragmentView;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        Bundle args = getArguments();
+        if (args != null) {
+            updateDefinitionView(args.getInt(ARG_POSITION));
+        } else if (mCurrentPosition != -1) {
+            updateDefinitionView(mCurrentPosition);
+        }
+    }
 
+
+    public void updateDefinitionView(int position) {
+        def.setText(Data.definitions[position]);
+        mCurrentPosition = position;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outstate) {
+        super.onSaveInstanceState(outstate);
+        outstate.putInt(ARG_POSITION, mCurrentPosition);
+    }
 
 }
+
+
+
